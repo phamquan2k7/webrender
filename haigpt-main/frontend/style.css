@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeInDown 0.8s ease forwards;
+}
+
+/* Title với rainbow gradient */
+.title {
+    font-size: 72px;
+    font-weight: 800;
+    background: linear-gradient(90deg, 
+        #ff0080, #ff8c00, #40e0d0, 
+        #0080ff, #8000ff, #ff0080);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 3s linear infinite, scaleIn 0.6s ease;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+}
+
+/* Caption với rainbow gradient nhẹ hơn */
+.caption {
+    font-size: 20px;
+    font-weight: 400;
+    background: linear-gradient(90deg,
+        #ff0080, #ff8c00, #40e0d0,
+        #0080ff, #8000ff, #ff0080);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 3s linear infinite, fadeIn 0.8s ease 0.2s both;
+    opacity: 0.8;
+}
+
+/* Feature Boxes Container */
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+/* Feature Box */
+.feature-box {
+    background: #ffffff;
+    border: 2px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature-box.small:nth-child(1) {
+    animation: slideInUp 0.6s ease 0.4s forwards;
+}
+
+.feature-box.small:nth-child(2) {
+    animation: slideInUp 0.6s ease 0.6s forwards;
+}
+
+/* Large Feature Box */
+.feature-box.large {
+    grid-column: span 2;
+    animation: slideInUp 0.6s ease 0.8s forwards;
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    border: 2px solid #e8e8e8;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-color: #e0e0e0;
+}
+
+.feature-box.large:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Title */
+.feature-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.feature-box.large .feature-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.feature-emoji {
+    font-size: 32px;
+    animation: bounce 2s infinite;
+}
+
+.feature-box.large .feature-emoji {
+    font-size: 36px;
+    animation: rotate 4s linear infinite;
+}
+
+/* Feature Content */
+.feature-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4a4a4a;
+}
+
+.feature-box.large .feature-content {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #3a3a3a;
+}
+
+/* Highlight text in large box */
+.highlight {
+    font-weight: 600;
+    color: #ff0080;
+}
+
+/* Animations */
+@keyframes rainbow {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading state */
+.loading {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .title {
+        font-size: 48px;
+    }
+    
+    .caption {
+        font-size: 18px;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature-box.large {
+        grid-column: span 1;
+    }
+    
+    .feature-box {
+        padding: 24px;
+    }
+    
+    .feature-title {
+        font-size: 20px;
+    }
+    
+    .feature-box.large .feature-title {
+        font-size: 22px;
+    }
+    
+    .feature-emoji {
+        font-size: 28px;
+    }
+    
+    .feature-box.large .feature-emoji {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px 16px;
+    }
+    
+    .title {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+    
+    .caption {
+        font-size: 16px;
+    }
+    
+    .header {
+        margin-bottom: 40px;
+    }
+    
+    .feature-content {
+        font-size: 14px;
+    }
+    
+    .feature-box.large .feature-content {
+        font-size: 15px;
+    }
+}
+/* Dashboard Button */
+.dashboard-btn {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: #ffffff;
+    border: 2px solid #f0f0f0;
+    border-radius: 100px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideInRight 0.8s ease forwards;
+    opacity: 0;
+}
+
+.dashboard-icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.4s ease;
+}
+
+.dashboard-text {
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+}
+
+/* Glow effect */
+.dashboard-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #ff0080, #ff8c00, #40e0d0, 
+        #0080ff, #8000ff, #ff0080);
+    background-size: 200% auto;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 100px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    animation: rainbow 3s linear infinite;
+    filter: blur(20px);
+    z-index: 0;
+}
+
+/* Hover effects */
+.dashboard-btn:hover {
+    transform: translateX(-5px) scale(1.05);
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-btn:hover .dashboard-icon {
+    transform: rotate(90deg) scale(1.1);
+    color: #ff0080;
+}
+
+.dashboard-btn:hover .dashboard-text {
+    background: linear-gradient(90deg, 
+        #ff0080, #ff8c00, #40e0d0, 
+        #0080ff, #8000ff, #ff0080);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 3s linear infinite;
+    font-weight: 700;
+}
+
+.dashboard-btn:hover .dashboard-glow {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0.3;
+}
+
+/* Active state */
+.dashboard-btn:active {
+    transform: translateX(-5px) scale(0.98);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Slide in animation */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive adjustments for button */
+@media (max-width: 768px) {
+    .dashboard-btn {
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .dashboard-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-btn {
+        top: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .dashboard-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .dashboard-btn:hover {
+        transform: scale(1.02);
+    }
+}
+
+/* Ensure button stays visible on small screens */
+@media (max-width: 360px) {
+    .dashboard-btn .dashboard-text {
+        display: none;
+    }
+    
+    .dashboard-btn {
+        padding: 12px;
+        gap: 0;
+    }
+}

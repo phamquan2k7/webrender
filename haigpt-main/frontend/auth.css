@@ -1,0 +1,420 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Header */
+.auth-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.auth-title {
+    font-size: 64px;
+    font-weight: 800;
+    background: linear-gradient(90deg, 
+        #ff0080, #ff8c00, #40e0d0, 
+        #0080ff, #8000ff, #ff0080);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 3s linear infinite;
+    margin-bottom: 12px;
+    letter-spacing: -2px;
+}
+
+.auth-subtitle {
+    font-size: 18px;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Form Container */
+.form-container {
+    background: #ffffff;
+    border: 2px solid #f0f0f0;
+    border-radius: 24px;
+    padding: 60px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* Tab Buttons với animated indicator */
+.tab-buttons {
+    display: flex;
+    margin-bottom: 40px;
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 6px;
+    position: relative;
+}
+
+.tab-indicator {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: calc(50% - 6px);
+    height: calc(100% - 12px);
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.tab-indicator.register {
+    transform: translateX(100%);
+}
+
+.tab-button {
+    flex: 1;
+    padding: 16px 24px;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.tab-button.active {
+    color: #1a1a1a;
+}
+
+.tab-button:hover:not(.active) {
+    color: #333;
+}
+
+/* Form Layout */
+.auth-form {
+    display: grid;
+    gap: 30px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.form-input {
+    padding: 16px 20px;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #ff0080;
+    box-shadow: 0 0 0 4px rgba(255, 0, 128, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-input::placeholder {
+    color: #999;
+}
+
+/* Submit Button */
+.submit-section {
+    margin-top: 20px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 18px 32px;
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff0080, #ff8c00);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.submit-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 0, 128, 0.4);
+}
+
+.submit-button:active {
+    transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loading */
+.loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes rainbow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Custom SweetAlert2 Styles */
+.swal2-popup {
+    border-radius: 20px !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.swal2-title {
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+}
+
+.swal2-content {
+    font-size: 16px !important;
+    color: #4a4a4a !important;
+}
+
+.swal2-confirm {
+    background: linear-gradient(135deg, #ff0080, #ff8c00) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 14px 32px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.swal2-confirm:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 30px rgba(255, 0, 128, 0.4) !important;
+}
+
+.swal2-cancel {
+    border-radius: 12px !important;
+    padding: 14px 32px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-container {
+        max-width: 100%;
+    }
+    
+    .auth-title {
+        font-size: 48px;
+    }
+    
+    .form-container {
+        padding: 40px 30px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 0 10px;
+    }
+    
+    .auth-title {
+        font-size: 36px;
+    }
+    
+    .auth-subtitle {
+        font-size: 16px;
+    }
+    
+    .form-container {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .tab-button {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+    
+    .form-input {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+    
+    .submit-button {
+        padding: 16px 24px;
+        font-size: 15px;
+    }
+    
+    .swal2-popup {
+        width: 90% !important;
+        margin: 0 5% !important;
+    }
+}
+
+/* High-end devices */
+@media (min-width: 1200px) {
+    .auth-container {
+        max-width: 1000px;
+    }
+    
+    .form-container {
+        padding: 80px;
+    }
+    
+    .auth-title {
+        font-size: 72px;
+    }
+}
+/* Thêm vào file auth.css */
+
+/* Captcha Section */
+.captcha-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.turnstile-widget {
+    min-height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.captcha-hint {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Adjust submit button when captcha not verified */
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #999, #666);
+}
+
+/* Responsive for captcha */
+@media (max-width: 480px) {
+    .turnstile-widget {
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+}
+/* Add to auth.css */
+
+.captcha-label {
+    text-align: center;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+.captcha-success {
+    font-size: 14px;
+    color: #22c55e;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.submit-hint {
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.auth-footer p {
+    font-size: 14px;
+    color: #666;
+}
